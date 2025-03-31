@@ -1,54 +1,58 @@
-# React + TypeScript + Vite
+# 🧠 AI Agent System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Memory-driven React + TypeScript coding assistant system with Dev and Reviewer agents.
 
-Currently, two official plugins are available:
+## 📦 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is a local-first AI development assistant that helps you:
+- ✨ Generate clean, modern React components (Dev Agent)
+- 🔍 Review code for best practices and accessibility (Reviewer Agent)
+- 🧠 Use memory components + style rules to ensure consistency
+- ⚡ Prompt LLMs locally via a custom frontend + memory context
 
-## Expanding the ESLint configuration
+## 🛠 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React + TypeScript
+- Vite
+- Custom Dev Agent + Reviewer Agent logic
+- Local LLM integration (DeepSeek, Code Llama, Mixtral, etc.)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🧠 Memory System
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The system uses `.txt` files to load:
+- Component examples for the Dev Agent
+- Code review standards for the Reviewer Agent
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Examples:
+/src/agent-memory/components/... /src/agent-memory/reviewer/...
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+yaml
+Copy
+Edit
+
+## 🚀 Usage
+
+1. Write a goal or task in the Dev Agent textarea
+2. Click **Run Agent** to generate code based on memory
+3. Paste generated code into the Reviewer Agent to get suggestions
+
+> Both agents are powered by prompt templates that inject memory references into each request.
+
+## 🧪 Versioning
+
+See [`CHANGELOG.md`](./CHANGELOG.md) for full release history.
+
+---
+
+## 📌 Status: v0.0.1
+
+✅ First working version with:
+- Dev Agent using reusable memory components
+- Reviewer Agent enforcing accessibility and best practices
+- Memory-driven prompts and session tracking
+
+---
+
+## 🧑‍💻 Author
+
+[Milton Di Simone](https://github.com/miltondisimone)
