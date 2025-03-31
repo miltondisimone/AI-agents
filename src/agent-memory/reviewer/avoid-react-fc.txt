@@ -1,0 +1,16 @@
+❌ Avoid using React.FC.
+
+Why:
+- React.FC adds unnecessary typing
+- It implicitly adds children to props
+- It restricts flexibility with generics and default props
+
+✅ Use explicit typing with an interface and an arrow function instead:
+
+interface Props {
+  title: string;
+}
+
+const MyComponent = ({ title }: Props) => {
+  return <h1>{title}</h1>;
+};

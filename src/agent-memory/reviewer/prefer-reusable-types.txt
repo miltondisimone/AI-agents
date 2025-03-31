@@ -1,0 +1,16 @@
+❌ Do not redefine types or interfaces that already exist.
+
+Why:
+- Causes duplication and inconsistency
+- Makes refactoring harder
+
+✅ Prefer reusing shared types:
+
+interface Todo {
+  title: string;
+  completed: boolean;
+}
+
+const TodoItem = ({ title, completed }: Todo) => {
+  return <li>{title}</li>;
+};

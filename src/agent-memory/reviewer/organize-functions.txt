@@ -1,0 +1,21 @@
+✅ Define helper functions before the components that use them.
+
+Why:
+- Avoids referencing before definition
+- Improves readability and flow
+
+❌ Avoid this:
+
+const Component = () => {
+  useHelper(); // Defined later
+};
+
+const useHelper = () => { ... };
+
+✅ Do this instead:
+
+const useHelper = () => { ... };
+
+const Component = () => {
+  useHelper();
+};

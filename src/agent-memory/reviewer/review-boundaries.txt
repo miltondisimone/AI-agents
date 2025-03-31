@@ -1,0 +1,14 @@
+❌ Avoid making suggestions unrelated to the task or memory examples.
+
+Do NOT suggest:
+- Replacing camelCase with kebab-case (this is incorrect in JSX)
+- Moving hardcoded data to external files unless requested
+- Changing styling systems (e.g., to CSS files or styled-components)
+- Adding tests unless the task includes testing
+
+✅ Focus only on:
+- Violations of internal memory standards
+- Accessibility issues
+- Code clarity, reuse, and structure
+- React + TypeScript best practices already taught
+- Do not mention kebab-case unless it actually appears in the code

@@ -1,0 +1,49 @@
+// ApiFetcher: Fetch data from an API and handle loading + error states
+
+import { useEffect, useState } from "react";
+
+interface ApiFetcherProps<T> {
+  url: string;
+  render: (data: T) => JSX.Element;
+  fallback?: JSX.Element;
+  errorFallback?: JSX.Element;
+}
+
+export const ApiFetcher = <T,>({
+  url,
+  render,
+  fallback = <p>Loading...</p>,
+  errorFallback = <p>Something went wrong.</p>,
+}: ApiFetcherProps<T>) => {
+  const [data, setData] = useState<T | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((json) => {
+        if (isMounted) {
+          setData(json);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        if (isMounted) {
+          setError(true);
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [url]);
+
+  if (loading) return fallback;
+  if (error || !data) return errorFallback;
+
+  return render(data);
+};

@@ -1,0 +1,80 @@
+// ContactForm: Form with controlled inputs, validation, and submit handling
+
+import { useState } from "react";
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+export const ContactForm = () => {
+  const [formData, setFormData] = useState<ContactFormData>({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [submitted, setSubmitted] = useState(false);
+
+  const validate = () => {
+    const newErrors: typeof errors = {};
+    if (!formData.name) newErrors.name = "Name is required";
+    if (!formData.email.includes("@")) newErrors.email = "Valid email is required";
+    if (!formData.message) newErrors.message = "Message is required";
+    return newErrors;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    setSubmitted(true);
+    // Handle API submission here
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
+
+  if (submitted) return <p>Thank you for your message!</p>;
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        placeholder="Name"
+        aria-invalid={!!errors.name}
+      />
+      {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+
+      <input
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="Email"
+        aria-invalid={!!errors.email}
+      />
+      {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+
+      <textarea
+        name="message"
+        value={formData.message}
+        onChange={handleChange}
+        placeholder="Your message"
+        aria-invalid={!!errors.message}
+      />
+      {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
+
+      <button type="submit">Send</button>
+    </form>
+  );
+};

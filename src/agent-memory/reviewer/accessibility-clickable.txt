@@ -1,0 +1,15 @@
+❌ Avoid using onClick directly on a <div>.
+
+Why:
+- <div> is not accessible by default
+- Screen readers and keyboard users cannot interact with it
+
+✅ Use a <button> or add proper accessibility attributes:
+
+<button onClick={handleClick}>Click me</button>
+
+OR, if you really need a <div>:
+
+<div role="button" tabIndex={0} onClick={handleClick} onKeyDown={handleKeyDown}>
+  Click me
+</div>
