@@ -44,12 +44,19 @@ See [`CHANGELOG.md`](./CHANGELOG.md) for full release history.
 
 ---
 
-## 📌 Status: v0.0.1
+## v0.0.1 – Memory Core Stable (2024-03-30)
 
-✅ First working version with:
-- Dev Agent using reusable memory components
-- Reviewer Agent enforcing accessibility and best practices
-- Memory-driven prompts and session tracking
+🧠 **Milestone:** First working version of the AI agent system
+
+### ✨ Features
+
+- ✅ **PM Agent**: Generates structured ticket breakdowns from natural language prompts
+- ✅ **Dev Agent**: Generates React components using memory examples
+- ✅ **Reviewer Agent**: Reviews code based on style/accessibility memory rules
+- ✅ Shared memory system with `.txt?raw` loading
+- ✅ Prompt systems enforce consistent logic across agents
+- ✅ Enforced best practices: no `React.FC`, accessible elements, reusable types
+- ✅ GitHub repo initialized and versioned
 
 ---
 
